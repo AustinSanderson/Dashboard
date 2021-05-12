@@ -3,14 +3,13 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 import numpy as np
-import dash_bootstrap_components as dbc
 from dash.dependencies import Output, Input
 #need prod WSGI server settings, currently PythonAnywhere does this
 #import gunicorn
 
 #Read in new .CSV file
-#df = pd.read_csv("/home/SlappyWhite/homeless/data/Homeless_Pop.csv")
-df = pd.read_csv("data\Homeless_Pop.csv")
+df = pd.read_csv("/home/SlappyWhite/homeless/data/Homeless_Pop.csv")
+#df = pd.read_csv("data\Homeless_Pop.csv")
 #state = df['statediv_title'].unique()
 
 
