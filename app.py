@@ -2,26 +2,17 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
-<<<<<<< HEAD
-import numpy as np
-=======
-import dash_bootstrap_components as dbc
->>>>>>> d2bfe81dd61173e53b2668353292f64fd52720ca
 from dash.dependencies import Output, Input
 #need prod WSGI server settings, currently PythonAnywhere does this
 #import gunicorn
 
-<<<<<<< HEAD
 #Read in new .CSV file
 df = pd.read_csv("/home/SlappyWhite/homeless/data/Homeless_Pop.csv")
 #df = pd.read_csv("data\Homeless_Pop.csv")
-#state = df['statediv_title'].unique()
 
-=======
 #Read in new .CSV file, commenting out locations for remote/local
 df = pd.read_csv("/home/SlappyWhite/homeless/data/Homeless_Pop.csv")
 #df = pd.read_csv("data\Homeless_Pop.csv")
->>>>>>> d2bfe81dd61173e53b2668353292f64fd52720ca
 
 mark_values =  {2009: '2009', 2010: '2010',2011: '2011',2012: '2012',2013: '2013',2014: '2014',
 				2015: '2015',2016: '2016',2017: '2017',2018: '2018'}
