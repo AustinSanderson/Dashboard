@@ -6,9 +6,10 @@ from dash.dependencies import Output, Input
 #need prod WSGI server settings, currently PythonAnywhere does this
 #import gunicorn
 
-#Read in new .CSV file, commenting out locations for remote/local
+# Read in new .CSV file, commenting out locations for remote platforms
 #df = pd.read_csv("/home/SlappyWhite/homeless/data/Homeless_Pop.csv")
-df = pd.read_csv("data\Homeless_Pop.csv")
+#df = pd.read_csv("data\Homeless_Pop.csv") #On Windows machine
+df = pd.read_csv("data/homeless_Pop.csv") #On Mac machine
 
 mark_values =  {2009: '2009', 2010: '2010',2011: '2011',2012: '2012',2013: '2013',2014: '2014',
 				2015: '2015',2016: '2016',2017: '2017',2018: '2018'}
