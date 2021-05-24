@@ -33,10 +33,10 @@ app.layout = html.Div(
                         dcc.Dropdown(
                             id="state",
                             options=[{'label': m, 'value': m} for m in sorted(df.state.unique())],
-                            placeholder="Search for a county",
+                            placeholder="Search for a region",
 							value="California",
                             multi=False,
-                            #clearable=False,
+                            clearable=True,
                             className="dropdown"
                         ),
                     ]
