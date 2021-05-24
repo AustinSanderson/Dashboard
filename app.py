@@ -55,7 +55,7 @@ app.layout = html.Div(
                             options=[{"label": pop_type, "value": pop_type} for pop_type in df.pop_type.unique()],
                             value="Total Homeless",
                             multi=False,
-                            clearable=False,
+                            clearable=True,
                             searchable=False,
                             className="dropdown",
                         ),
