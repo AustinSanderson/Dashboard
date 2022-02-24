@@ -5,25 +5,32 @@ body {
 }
 
 .header {
-    background-color: #222222;
+    background-color: #079A82;
     height: 155px;
     padding: 16px 0 0 0;
 }
 
 .header-emoji {
-    font-size: 48px;
+    font-size: 45px;
     margin: 0 auto;
     text-align: center;
 }
 
 .header-title {
     color: #FFFFFF;
-    font-size: 48px;
+    font-size: 45px;
     font-weight: bold;
     text-align: center;
     margin: 0 auto;
 }
 
+.header-title-two {
+    color: #FFFFFF;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+}
 .header-description {
     color: #CFCFCF;
     margin: 4px auto;
@@ -48,10 +55,9 @@ body {
 .menu {
     height: 112px;
     width: 912px;
-    display: flex;
-    justify-content: space-evenly;
     padding-top: 24px;
-    margin: -80px auto 0 auto;
+    justify-content: space-evenly;
+    /* margin: -80px auto auto auto;
     background-color: #FFFFFF;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.18);
 }
@@ -74,4 +80,3 @@ body {
     font-weight: bold;
     color: #079A82;
 }
-

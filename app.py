@@ -1,6 +1,9 @@
+# Note that you uninstalled dash==1.19.0 to upgrade; you may need to reinstall for this app
+# Currently, dash==2.2.0 is installed
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+import dash_bootstrap_components as dbc
+from dash import html
 import pandas as pd
 from dash.dependencies import Output, Input
 #need prod WSGI server settings, currently PythonAnywhere does this
@@ -14,7 +17,7 @@ df = pd.read_csv("data/homeless_Pop.csv") #On Mac machine
 mark_values =  {2009: '2009', 2010: '2010',2011: '2011',2012: '2012',2013: '2013',2014: '2014',
 				2015: '2015',2016: '2016',2017: '2017',2018: '2018'}
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 server = app.server
 app.title = "Homelessness"
@@ -22,47 +25,73 @@ app.title = "Homelessness"
 app.layout = html.Div(
     [
         html.Div(
-            html.H1("Homeless Populations", className="header-title"),
-            className="header"
+			[
+	            html.H1("Homeless Populations", className="header-title"),
+				html.H3("in Metropolitan America", className="header-title-two"),
+			],
+			className="header"
         ),
         html.Div(
             [
-                html.Div(
-                    [
-                        html.Label("State", className="menu-title"),
-                        dcc.Dropdown(
-                            id="state",
-                            options=[{'label': m, 'value': m} for m in sorted(df.state.unique())],
-                            placeholder="Search for a region",
-							value="California",
-                            multi=False,
-                            clearable=True,
-                            className="dropdown"
-                        ),
-                    ]
-                ),
-                html.Div(
-                    [
-                        html.Label("County", className="menu-title"),
-                        dcc.Dropdown(id="filtered_counties",options=[],placeholder="Search counties",value=[],multi=False,className="dropdown"),
-                    ]
-                ),
-                html.Div(
-                    [
-                        html.Label("Population", className="menu-title"),
-                        dcc.Dropdown(
-                            id="type-filter",
-                            options=[{"label": pop_type, "value": pop_type} for pop_type in df.pop_type.unique()],
-                            value="Total Homeless",
-                            multi=False,
-                            clearable=True,
-                            searchable=False,
-                            className="dropdown",
-                        ),
-                    ],
-                ),
-            ],
-            className="menu",
+                dbc.Row(
+					[
+						dbc.Col(
+							html.Div(
+			                    [
+			                        html.Label("State", className="menu-title"),
+			                        dcc.Dropdown(
+			                            id="state",
+			                            options=[{'label': m, 'value': m} for m in sorted(df.state.unique())],
+			                            placeholder="Search for a region",
+										value="California",
+			                            multi=False,
+			                            clearable=True,
+			                            className="dropdown"
+			                        ),
+			                    ]
+	                		),
+							width={"size": "auto", "order": 1},
+						),
+		                dbc.Col(
+							html.Div(
+			                    [
+			                        html.Label("County", className="menu-title"),
+			                        dcc.Dropdown(
+										id="filtered_counties",
+										options=[],
+										placeholder="Search counties",
+										value=[],
+										clearable=True,
+										multi=False,
+										className="dropdown"
+									),
+			                    ]
+			                ),
+							width={"size": "auto", "order": 2},
+						),
+	                	dbc.Col(
+							html.Div(
+			                    [
+			                        html.Label("Population", className="menu-title"),
+			                        dcc.Dropdown(
+			                            id="type-filter",
+			                            options=[{"label": pop_type, "value": pop_type} for pop_type in df.pop_type.unique()],
+			                            value="Total Homeless",
+			                            multi=False,
+			                            clearable=True,
+			                            searchable=False,
+			                            className="dropdown"
+			                        ),
+			                    ]
+			                ),
+							width={"size": "auto", "order": 3},
+						),
+					]
+				)
+			],
+			#className = "menu",
+			style={"display": "flex", "flexWrap": "wrap", "box-shadow": "0 4px 6px 0 rgba(0, 0, 0, 0.18)", "padding": "10px", "justify-content": "space-evenly"},
+
         ),
         html.Div(
             [
@@ -70,7 +99,7 @@ app.layout = html.Div(
 					dcc.Graph(id="PIT-chart",config={"displayModeBar": True}),
 					className="card",
 				),
-				html.Label("Date Range", className="menu-title"),
+				# html.Label("Date Range", className="menu-title"),
 				dcc.RangeSlider(
 				    id='year-slider',
 				    min=2009,
@@ -81,7 +110,7 @@ app.layout = html.Div(
 				    marks=mark_values,
 			 	),
 			],
-            className="wrapper",
+			className="wrapper",
         ),
     ]
 )
