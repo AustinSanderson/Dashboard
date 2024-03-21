@@ -1,17 +1,13 @@
-# Note that you uninstalled dash==1.19.0 to upgrade; you may need to reinstall for this app
-# Currently, dash==2.2.0 is installed
 import dash
 from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import html
 import pandas as pd
 from dash.dependencies import Output, Input
-#need prod WSGI server settings, currently PythonAnywhere does this
-#import gunicorn
 
 # Read in new .CSV file, commenting out locations for remote platforms
-#df = pd.read_csv("/home/SlappyWhite/homeless/data/Homeless_Pop.csv")
-#df = pd.read_csv("data\Homeless_Pop.csv") #On Windows machine
+# df = pd.read_csv("/home/SlappyWhite/homeless/data/Homeless_Pop.csv")
+# df = pd.read_csv("data\Homeless_Pop.csv") #On Windows machine
 df = pd.read_csv("data/homeless_Pop.csv") #On Mac machine
 
 mark_values =  {2009: '2009', 2010: '2010',2011: '2011',2012: '2012',2013: '2013',2014: '2014',
@@ -43,7 +39,7 @@ app.layout = html.Div(
 			                            id="state",
 			                            options=[{'label': m, 'value': m} for m in sorted(df.state.unique())],
 			                            placeholder="Search for a region",
-										value="California",
+						    value="California",
 			                            multi=False,
 			                            clearable=True,
 			                            className="dropdown"
@@ -57,14 +53,14 @@ app.layout = html.Div(
 			                    [
 			                        html.Label("County", className="menu-title"),
 			                        dcc.Dropdown(
-										id="filtered_counties",
-										options=[],
-										placeholder="Search counties",
-										value=[],
-										clearable=True,
-										multi=False,
-										className="dropdown"
-									),
+							id="filtered_counties",
+							options=[],
+							placeholder="Search counties",
+							value=[],
+							clearable=True,
+							multi=False,
+							className="dropdown"
+						),
 			                    ]
 			                ),
 							width={"size": "auto", "order": 2},
