@@ -5,8 +5,8 @@ from dash import html
 import pandas as pd
 from dash.dependencies import Output, Input
 
-# Read in new .CSV file, commenting out locations for remote platforms
-df = pd.read_csv("data/homeless_Pop.csv") #On Mac machine
+# Read in new .CSV file
+df = pd.read_csv("data/homeless_Pop.csv") 
 
 mark_values =  {2009: '2009', 2010: '2010',2011: '2011',2012: '2012',2013: '2013',2014: '2014',
 				2015: '2015',2016: '2016',2017: '2017',2018: '2018'}
@@ -83,7 +83,6 @@ app.layout = html.Div(
 					]
 				)
 			],
-			#className = "menu",
 			style={"display": "flex", "flexWrap": "wrap", "box-shadow": "0 4px 6px 0 rgba(0, 0, 0, 0.18)", "padding": "10px", "justify-content": "space-evenly"},
 
         ),
@@ -93,7 +92,6 @@ app.layout = html.Div(
 					dcc.Graph(id="PIT-chart",config={"displayModeBar": True}),
 					className="card",
 				),
-				# html.Label("Date Range", className="menu-title"),
 				dcc.RangeSlider(
 				    id='year-slider',
 				    min=2009,
@@ -109,7 +107,7 @@ app.layout = html.Div(
     ]
 )
 
-#Populate the options of counties dropdown based on state dropdown
+# Populate the options of counties dropdown based on state dropdown
 @app.callback(
     Output('filtered_counties','options'),
     Input('state','value')
